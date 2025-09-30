@@ -1,0 +1,36 @@
+const boardJSON = [
+  {
+    "name": "Início",
+    "id": "inicio",
+    "color": "#FFB6C1",
+    "icon": "🏠",
+    "items": [
+      { "text": "Eu sou a Laura", "image": "assets/eu.jpeg" },
+      { "text": "Quero ir pra casa", "icon": "🏠" },
+      { "text": "Vamos brincar", "icon": "🎲" },
+      { "text": "Que pena que acabou", "icon": "😢" }
+    ]
+  },
+  {
+    "name": "Comer e Beber",
+    "id": "comer-beber",
+    "color": "#FFA07A",
+    "image": "assets/comida.png",
+    "items": [
+      { "text": "Quero comer", "image": "assets/comida.png" },
+      { "text": "Quero beber", "icon": "🥤" },
+      { "text": "Tenho fome", "icon": "🍔" }
+    ]
+  },
+  {
+    "name": "Banheiro",
+    "id": "banheiro",
+    "color": "#98FB98",
+    "icon": "🚽",
+    "items": [
+      { "text": "Quero ir ao banheiro", "icon": "🚽" },
+      { "text": "Terminei", "icon": "✅" },
+      { "text": "Preciso de ajuda", "icon": "🙋" }
+    ]
+  }
+];
