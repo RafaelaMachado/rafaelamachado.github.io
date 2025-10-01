@@ -10,32 +10,32 @@ document.addEventListener("DOMContentLoaded", () => {
       "icon": "🏠",
       "items": [
         { "text": "Eu sou a Laura", "image": "assets/eu.jpeg" },
-        { "text": "Quero ir pra casa", "icon": "🏠" },
-        { "text": "Vamos brincar", "icon": "🎲" },
-        { "text": "Quero mais", "icon": "😢" },
-        { "text": "Que pena que acabou", "icon": "😢" },
-        { "text": "Quero comer", "icon": "😢" },
-        { "text": "Quero dormir", "icon": "😢" },
-        { "text": "Vamos escolher outro", "icon": "😢" },
+        { "text": "Quero ir pra casa", "icon": "🏠🚶‍♀️" },
+        { "text": "Vamos brincar", "icon": "🎲🤹‍♂️" },
+        { "text": "Quero mais", "icon": "🤲😋" },
+        { "text": "Que pena que acabou", "icon": "😞💔" },
+        { "text": "Quero comer", "icon": "🍎🍌" },
+        { "text": "Quero dormir", "icon": "😴🛌" },
+        { "text": "Vamos escolher outro", "icon": "🔄🤔" },
         { "text": "Guarda guarda guarda", "icon": "😢" },
-        { "text": "Eu gosto disso", "icon": "😢" },
-        { "text": "Não quero mais", "icon": "😢" },
-        { "text": "Quero àgua", "icon": "😢" },
-        { "text": "Vamos passear", "icon": "😢" },
-        { "text": "Vamos parar", "icon": "😢" },
-        { "text": "Vamos ouvir música", "icon": "😢" },
-        { "text": "Eu não gostei", "icon": "😢" },
-        { "text": "Quero ir no banheiro", "icon": "😢" },
-        { "text": "Estou sentindo dor", "icon": "😢" },
-        { "text": "Preciso de ajuda", "icon": "😢" },
-        { "text": "Preciso me acalmar", "icon": "😢" },
-        { "text": "Quero carinho", "icon": "😢" },
-        { "text": "Estou brava", "icon": "😢" },
-        { "text": "Estou feliz", "icon": "😢" },
-        { "text": "Estou triste", "icon": "😢" },
-        { "text": "Que nojo", "icon": "😢" },
-        { "text": "Que susto", "icon": "😢" },
-        { "text": "Muito bem", "icon": "😢" },
+        { "text": "Eu gosto disso", "icon": "😊❤️" },
+        { "text": "Não quero mais", "icon": "🙅‍♀️❌" },
+        { "text": "Quero àgua", "icon": "💧🥤" },
+        { "text": "Vamos passear", "icon": "🚶‍♂️🌳" },
+        { "text": "Vamos parar", "icon": "✋🛑" },
+        { "text": "Vamos ouvir música", "icon": "🎵🎧" },
+        { "text": "Eu não gostei", "icon": "😕👎" },
+        { "text": "Quero ir no banheiro", "icon": "🚻🚽" },
+        { "text": "Estou sentindo dor", "icon": "😣🤕" },
+        { "text": "Preciso de ajuda", "icon": "🆘🙋🏻‍♀️" },
+        { "text": "Preciso me acalmar", "icon": "😌🧘" },
+        { "text": "Quero carinho", "icon": "🤗💞" },
+        { "text": "Estou brava", "icon": "😡🔥" },
+        { "text": "Estou feliz", "icon": "😄🌞" },
+        { "text": "Estou triste", "icon": "😢☔" },
+        { "text": "Que nojo", "icon": "🤢🤮" },
+        { "text": "Que susto", "icon": "😱" },
+        { "text": "Muito bem", "icon": "👍👏" },
       ]
     },
     {
@@ -141,37 +141,13 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  // let voices = window.speechSynthesis.getVoices();
-
-  // function loadVoices(callback) {
-  //   let voices = window.speechSynthesis.getVoices();
-  //   if (voices.length) {
-  //     callback(voices);
-  //     return;
-  //   }
-  //   window.speechSynthesis.onvoiceschanged = () => {
-  //     voices = window.speechSynthesis.getVoices();
-  //     callback(voices);
-  //   };
-  // }
-
-  // loadVoices(voices => {
-  //   selectedVoice = voices.find(v => v.lang === "pt-BR" && v.name.includes("Francisca")) 
-  //                   || voices.find(v => v.lang === "pt-BR") 
-  //                   || null;
-  // });
-
-  // let selectedVoice = null;
-
   function initVoices() {
     const voices = window.speechSynthesis.getVoices();
     
-    // Filtra vozes portugues-brasileiro
     const ptBRVoices = voices.filter(v => v.lang === "pt-BR");
 
-    // Tenta selecionar voz feminina pelo nome (Francisca)
     selectedVoice = ptBRVoices.find(v => v.name.includes("Francisca")) 
-                    || ptBRVoices[0] // fallback
+                    || ptBRVoices[0]
                     || null;
 
     console.log("Voz selecionada:", selectedVoice?.name || "nenhuma");
