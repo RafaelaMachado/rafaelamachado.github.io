@@ -142,14 +142,33 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   let voices = window.speechSynthesis.getVoices();
-  const selectedVoice = voices.find(v => v.lang === "pt-BR") || null;
+
+  function loadVoices(callback) {
+    let voices = window.speechSynthesis.getVoices();
+    if (voices.length) {
+      callback(voices);
+      return;
+    }
+    window.speechSynthesis.onvoiceschanged = () => {
+      voices = window.speechSynthesis.getVoices();
+      callback(voices);
+    };
+  }
+
+  loadVoices(voices => {
+    selectedVoice = voices.find(v => v.lang === "pt-BR" && v.name.includes("Francisca")) 
+                    || voices.find(v => v.lang === "pt-BR") 
+                    || null;
+  });
+
   const speak = text => {
-    if (!text) return;
+    if (!text || !selectedVoice) return;
     const utter = new SpeechSynthesisUtterance(text);
     utter.voice = selectedVoice;
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utter);
   };
+
 
   const createTab = (category, isActive = false) => {
     const button = document.createElement("button");
