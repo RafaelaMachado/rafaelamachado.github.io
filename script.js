@@ -141,34 +141,53 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  let voices = window.speechSynthesis.getVoices();
+  // let voices = window.speechSynthesis.getVoices();
 
-  function loadVoices(callback) {
-    let voices = window.speechSynthesis.getVoices();
-    if (voices.length) {
-      callback(voices);
-      return;
-    }
-    window.speechSynthesis.onvoiceschanged = () => {
-      voices = window.speechSynthesis.getVoices();
-      callback(voices);
-    };
+  // function loadVoices(callback) {
+  //   let voices = window.speechSynthesis.getVoices();
+  //   if (voices.length) {
+  //     callback(voices);
+  //     return;
+  //   }
+  //   window.speechSynthesis.onvoiceschanged = () => {
+  //     voices = window.speechSynthesis.getVoices();
+  //     callback(voices);
+  //   };
+  // }
+
+  // loadVoices(voices => {
+  //   selectedVoice = voices.find(v => v.lang === "pt-BR" && v.name.includes("Francisca")) 
+  //                   || voices.find(v => v.lang === "pt-BR") 
+  //                   || null;
+  // });
+
+  // let selectedVoice = null;
+
+  function initVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    
+    // Filtra vozes portugues-brasileiro
+    const ptBRVoices = voices.filter(v => v.lang === "pt-BR");
+
+    // Tenta selecionar voz feminina pelo nome (Francisca)
+    selectedVoice = ptBRVoices.find(v => v.name.includes("Francisca")) 
+                    || ptBRVoices[0] // fallback
+                    || null;
+
+    console.log("Voz selecionada:", selectedVoice?.name || "nenhuma");
   }
 
-  loadVoices(voices => {
-    selectedVoice = voices.find(v => v.lang === "pt-BR" && v.name.includes("Francisca")) 
-                    || voices.find(v => v.lang === "pt-BR") 
-                    || null;
-  });
+  window.speechSynthesis.onvoiceschanged = initVoices;
 
-  const speak = text => {
+  initVoices();
+
+  function speak(text) {
     if (!text || !selectedVoice) return;
     const utter = new SpeechSynthesisUtterance(text);
     utter.voice = selectedVoice;
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utter);
-  };
-
+  }
 
   const createTab = (category, isActive = false) => {
     const button = document.createElement("button");
