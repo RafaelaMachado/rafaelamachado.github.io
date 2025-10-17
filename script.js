@@ -153,7 +153,26 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Voz selecionada:", selectedVoice?.name || "nenhuma");
   }
 
-  window.speechSynthesis.onvoiceschanged = initVoices;
+  function waitForVoices() {
+    return new Promise(resolve => {
+      let voices = speechSynthesis.getVoices();
+      if (voices.length) return resolve(voices);
+      speechSynthesis.onvoiceschanged = () => resolve(speechSynthesis.getVoices());
+    });
+  }
+
+  let selectedVoice = null;
+
+  async function initVoices() {
+    const voices = await waitForVoices();
+    const ptBRVoices = voices.filter(v => v.lang === "pt-BR");
+
+    selectedVoice = ptBRVoices.find(v => v.name.includes("Francisca")) 
+                  || ptBRVoices[0]
+                  || null;
+
+    console.log("Voz selecionada:", selectedVoice?.name || "nenhuma");
+  }
 
   initVoices();
 
@@ -262,3 +281,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initializeBoard(boardJSON);
 });
+
